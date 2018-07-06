@@ -1,0 +1,67 @@
+name:                status-dashboard
+version:             0.1.0.0
+github:              "krisajenkins/status-dashboard"
+license:             BSD3
+author:              "Kris Jenkins"
+maintainer:          "krisajenkins@gmail.com"
+copyright:           "2018 Kris Jenkins"
+
+extra-source-files:
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/krisajenkins/status-dashboard#readme>
+
+dependencies:
+- aeson
+- base
+- data-default-class
+- gitrev
+- lens
+- lens-aeson
+- monad-logger
+- monad-logger
+- optparse-applicative
+- mtl
+- mtl
+- servant
+- servant-server
+- text
+- transformers
+- wai
+- wai-cors
+- wai-extra
+- warp
+
+library:
+  source-dirs: src
+
+executables:
+  status-dashboard:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - status-dashboard
+
+tests:
+  status-dashboard-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - status-dashboard
+    - hspec
+    - hspec-core
