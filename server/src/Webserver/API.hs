@@ -10,11 +10,14 @@ module Webserver.API
 
 import Data.Text (Text)
 import Servant (Raw, Post, (:<|>), (:>), Get, PlainText)
+import Servant.API.WebSocket (WebSocket)
 
 type Web =
   "version" :> Get '[ PlainText] Text
   :<|>
   "api" :> API
+  :<|>
+  "ws" :> WebSocket
   :<|>
   Raw
 

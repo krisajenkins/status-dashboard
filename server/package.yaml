@@ -31,13 +31,16 @@ dependencies:
 - mtl
 - mtl
 - servant
+- servant-client
 - servant-server
+- servant-websockets
 - text
 - transformers
 - wai
 - wai-cors
 - wai-extra
 - warp
+- websockets
 
 library:
   source-dirs: src
