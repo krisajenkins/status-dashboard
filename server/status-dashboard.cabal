@@ -1,0 +1,120 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 229bbaa8d2453fce7770bc1bdc872304f4361e8fd8dcba357553b9ebc335249b
+
+name:           status-dashboard
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/krisajenkins/status-dashboard#readme>
+homepage:       https://github.com/krisajenkins/status-dashboard#readme
+bug-reports:    https://github.com/krisajenkins/status-dashboard/issues
+author:         Kris Jenkins
+maintainer:     krisajenkins@gmail.com
+copyright:      2018 Kris Jenkins
+license:        BSD3
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/krisajenkins/status-dashboard
+
+library
+  exposed-modules:
+      Webserver
+      Webserver.API
+  other-modules:
+      Paths_status_dashboard
+  hs-source-dirs:
+      src
+  build-depends:
+      aeson
+    , base
+    , data-default-class
+    , gitrev
+    , lens
+    , lens-aeson
+    , monad-logger
+    , mtl
+    , optparse-applicative
+    , servant
+    , servant-client
+    , servant-server
+    , servant-websockets
+    , text
+    , transformers
+    , wai
+    , wai-cors
+    , wai-extra
+    , warp
+    , websockets
+  default-language: Haskell2010
+
+executable status-dashboard
+  main-is: Main.hs
+  other-modules:
+      Paths_status_dashboard
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base
+    , data-default-class
+    , gitrev
+    , lens
+    , lens-aeson
+    , monad-logger
+    , mtl
+    , optparse-applicative
+    , servant
+    , servant-client
+    , servant-server
+    , servant-websockets
+    , status-dashboard
+    , text
+    , transformers
+    , wai
+    , wai-cors
+    , wai-extra
+    , warp
+    , websockets
+  default-language: Haskell2010
+
+test-suite status-dashboard-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      WebserverSpec
+      Paths_status_dashboard
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base
+    , data-default-class
+    , gitrev
+    , hspec
+    , hspec-core
+    , lens
+    , lens-aeson
+    , monad-logger
+    , mtl
+    , optparse-applicative
+    , servant
+    , servant-client
+    , servant-server
+    , servant-websockets
+    , status-dashboard
+    , text
+    , transformers
+    , wai
+    , wai-cors
+    , wai-extra
+    , warp
+    , websockets
+  default-language: Haskell2010
