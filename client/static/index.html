@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <script type="text/javascript" src="app.js"></script>
+    <style type="text/css">
+        #status-container {
+          width: 200px;
+          height: 200px;
+        }
+    </style>
+  </head>
+  <body>
+      <div id="status-container"></div>
+  </body>
+  <script type="text/javascript">
+      var node = document.getElementById('status-container');
+      var app = Elm.Main.embed(node);
+  </script>
+</html>

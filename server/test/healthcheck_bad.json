@@ -1,0 +1,21 @@
+{
+  "checks": [
+    {
+      "description": "peerCount",
+      "status": "OK"
+    },
+    {
+      "description": "earliestBlock",
+      "status": "ERROR",
+      "error": "java.lang.Exception: faulty getBlockByNumber(BlockByNumberRequest(Earliest,true))"
+    },
+    {
+      "description": "latestBlock",
+      "status": "OK"
+    },
+    {
+      "description": "pendingBlock",
+      "status": "OK"
+    }
+  ]
+}

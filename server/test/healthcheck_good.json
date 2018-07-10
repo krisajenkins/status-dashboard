@@ -1,0 +1,20 @@
+{
+  "checks": [
+    {
+      "description": "peerCount",
+      "status": "OK"
+    },
+    {
+      "description": "earliestBlock",
+      "status": "OK"
+    },
+    {
+      "description": "latestBlock",
+      "status": "OK"
+    },
+    {
+      "description": "pendingBlock",
+      "status": "OK"
+    }
+  ]
+}

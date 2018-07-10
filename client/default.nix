@@ -9,11 +9,12 @@ pkgs.stdenv.mkDerivation {
 
   configurePhase = ''
     export HOME="$NIX_BUILD_TOP"
+    elm package install --yes
   '';
 
   buildPhase = ''
-    elm package install --yes
     elm make src/Main.elm --output dist/app.js
+    cp -r static/* dist/
   '';
 
   installPhase = ''

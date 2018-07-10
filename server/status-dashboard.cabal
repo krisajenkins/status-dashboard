@@ -6,13 +6,11 @@
 
 name:           status-dashboard
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/krisajenkins/status-dashboard#readme>
-homepage:       https://github.com/krisajenkins/status-dashboard#readme
-bug-reports:    https://github.com/krisajenkins/status-dashboard/issues
-author:         Kris Jenkins
-maintainer:     krisajenkins@gmail.com
-copyright:      2018 Kris Jenkins
-license:        BSD3
+description:    Please see the README on GitHub at <https://github.com/input-output-hk/status-dashboard#readme>
+homepage:       https://github.com/input-output-hk/status-dashboard#readme
+bug-reports:    https://github.com/input-output-hk/status-dashboard/issues
+copyright:      2018 IOHK
+license:        MIT
 build-type:     Simple
 cabal-version:  >= 1.10
 extra-source-files:
@@ -20,12 +18,14 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/krisajenkins/status-dashboard
+  location: https://github.com/input-output-hk/status-dashboard
 
 library
   exposed-modules:
+      Healthcheck
       Webserver
       Webserver.API
+      Webserver.Types
   other-modules:
       Paths_status_dashboard
   hs-source-dirs:
@@ -33,6 +33,7 @@ library
   build-depends:
       aeson
     , base
+    , bytestring
     , data-default-class
     , gitrev
     , lens
@@ -46,6 +47,7 @@ library
     , servant-websockets
     , text
     , transformers
+    , vector
     , wai
     , wai-cors
     , wai-extra
@@ -88,6 +90,7 @@ test-suite status-dashboard-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      HealthcheckSpec
       WebserverSpec
       Paths_status_dashboard
   hs-source-dirs:
@@ -96,14 +99,11 @@ test-suite status-dashboard-test
   build-depends:
       aeson
     , base
-    , data-default-class
-    , gitrev
+    , bytestring
     , hspec
     , hspec-core
     , lens
     , lens-aeson
-    , monad-logger
-    , mtl
     , optparse-applicative
     , servant
     , servant-client

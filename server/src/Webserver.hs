@@ -32,6 +32,7 @@ import Servant
 import Servant.API.WebSocket (WebSocket)
 import Servant.Server (Handler, Server)
 import Webserver.API (Web)
+import Webserver.Types (OverallStatus(Bad, Good))
 
 api :: Handler Text
 api = pure "Hello"
@@ -45,7 +46,10 @@ websocket = serveWebsocket
         forkPingThread connection 10
         for_ [1 .. 10] $ \i -> do
           sendTextData connection $
-            encode $ object [("counter", Number (fromInteger i))]
+            encode $
+            if i < 8
+              then Good
+              else Bad
           threadDelay 1000000
 
 version :: Applicative m => m Text
