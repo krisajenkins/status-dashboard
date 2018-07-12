@@ -24,8 +24,11 @@ update msg model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     let
+        scheme = case model.location.protocol of
+                     "https:" -> "wss:"
+                     _ -> "ws:"
         server =
-            "ws://" ++ model.location.host ++ "/ws"
+            scheme ++ "//" ++ model.location.host ++ "/ws"
     in
         Sub.batch
             [ listen server (decodeString decodeStatus >> RemoteData.fromResult >> WebsocketMsg)
