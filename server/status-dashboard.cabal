@@ -36,6 +36,8 @@ library
     , bytestring
     , data-default-class
     , gitrev
+    , http-client
+    , http-client-tls
     , lens
     , lens-aeson
     , monad-logger
@@ -45,6 +47,7 @@ library
     , servant-client
     , servant-server
     , servant-websockets
+    , stm
     , text
     , transformers
     , vector
