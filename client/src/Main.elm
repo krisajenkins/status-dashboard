@@ -3,9 +3,10 @@ module Main exposing (..)
 import Html
 import Json.Decode exposing (Decoder, decodeString, field, int)
 import RemoteData exposing (RemoteData(Loading, Success))
-import Types exposing (Model, Msg(WebsocketMsg), decodeStatus)
+import Types exposing (Model, Msg(WebsocketMsg, LocationChanged), decodeStatus)
 import View exposing (root)
 import WebSocket exposing (keepAlive, listen)
+import Navigation exposing (Location)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -16,27 +17,42 @@ update msg model =
             , Cmd.none
             )
 
+        LocationChanged location ->
+            ( model, Cmd.none )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
     let
+        scheme = case model.location.protocol of
+                     "https:" -> "wss:"
+                     _ -> "ws:"
         server =
-            "ws://localhost:8080/ws"
+            scheme ++ "//" ++ model.location.host ++ "/ws"
     in
-    Sub.batch
-        [ listen server (decodeString decodeStatus >> RemoteData.fromResult >> WebsocketMsg)
-        , keepAlive server
-        ]
+        Sub.batch
+            [ listen server (decodeString decodeStatus >> RemoteData.fromResult >> WebsocketMsg)
+            , keepAlive server
+            ]
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( { status = Loading }, Cmd.none )
+init : Location -> ( Model, Cmd Msg )
+init location =
+    ( { status = Loading
+      , location = location
+      }
+    , Cmd.none
+    )
+
+
+locationParser : Location -> Msg
+locationParser location =
+    LocationChanged location
 
 
 main : Program Never Model Msg
 main =
-    Html.program
+    Navigation.program locationParser
         { init = init
         , subscriptions = subscriptions
         , view = root

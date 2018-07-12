@@ -54,14 +54,14 @@ root model =
                 NotAsked ->
                     white
     in
-    div
-        [ style
-            [ ( "width", "100%" )
-            , ( "height", "100%" )
-            , ( "background-color", backgroundColor )
-            , ( "transition-property", "background-color" )
-            , ( "transition-duration", "500ms" )
+        div
+            [ style
+                [ ( "width", "100%" )
+                , ( "height", "100%" )
+                , ( "background-color", backgroundColor )
+                , ( "transition-property", "background-color" )
+                , ( "transition-duration", "500ms" )
+                ]
+            , class "status"
             ]
-        , class "status"
-        ]
-        [ text " " ]
+            [ text " " ]
