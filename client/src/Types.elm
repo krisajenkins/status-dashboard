@@ -2,6 +2,7 @@ module Types exposing (..)
 
 import Json.Decode exposing (Decoder, andThen, decodeString, field, string, succeed)
 import RemoteData exposing (RemoteData(Loading, Success))
+import Navigation exposing (Location)
 
 
 type alias WebsocketData a =
@@ -10,6 +11,7 @@ type alias WebsocketData a =
 
 type Msg
     = WebsocketMsg (WebsocketData OverallStatus)
+    | LocationChanged Location
 
 
 type OverallStatus
@@ -20,6 +22,7 @@ type OverallStatus
 
 type alias Model =
     { status : WebsocketData OverallStatus
+    , location : Location
     }
 
 
