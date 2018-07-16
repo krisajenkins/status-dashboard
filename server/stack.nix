@@ -33992,7 +33992,7 @@ inherit (pkgs) libjpeg; inherit (pkgs) libpng; inherit (pkgs) zlib;};
            license = stdenv.lib.licenses.bsd2;
          }) {};
       "status-dashboard" = callPackage
-        ({ mkDerivation, aeson, base, data-default-class, gitrev, lens
+        ({ mkDerivation, aeson, base, broadcast-chan, data-default-class, gitrev, lens
          , lens-aeson, monad-logger, mtl, optparse-applicative, servant
          , servant-client, servant-server, servant-websockets, stdenv, text
          , transformers, wai, wai-cors, wai-extra, warp, websockets
@@ -34004,7 +34004,7 @@ inherit (pkgs) libjpeg; inherit (pkgs) libpng; inherit (pkgs) zlib;};
            isLibrary = true;
            isExecutable = true;
            libraryHaskellDepends = [
-             aeson base data-default-class gitrev lens lens-aeson monad-logger
+             aeson base broadcast-chan data-default-class gitrev lens lens-aeson monad-logger
              mtl optparse-applicative servant servant-client servant-server
              servant-websockets text transformers wai wai-cors wai-extra warp
              websockets
