@@ -1,7 +1,17 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE OverloadedStrings #-}
+
 module Main where
 
+import Control.Concurrent (forkIO, threadDelay)
+import Control.Concurrent.BroadcastChan
+  ( BroadcastChan
+  , In
+  , newBChanListener
+  , newBroadcastChan
+  , readBChan
+  , writeBChan
+  )
 import Control.Monad.IO.Class (MonadIO, liftIO)
 import Control.Monad.Logger (MonadLogger, logInfoN, runStderrLoggingT)
 import Data.Monoid ((<>))
@@ -62,7 +72,7 @@ commandParser =
 runCommand :: (MonadIO m, MonadLogger m) => Command -> m ()
 runCommand (Run host port staticDir) = do
   logInfoN . Text.pack $ "Running on " <> show host <> ":" <> show port
-  liftIO . runSettings settings $ Webserver.app staticDir
+  Webserver.run settings staticDir
   where
     settings = setHost host . setPort port $ defaultSettings
 

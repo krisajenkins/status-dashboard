@@ -33,6 +33,7 @@ library
   build-depends:
       aeson
     , base
+    , broadcast-chan
     , bytestring
     , data-default-class
     , gitrev
@@ -68,6 +69,7 @@ executable status-dashboard
   build-depends:
       aeson
     , base
+    , broadcast-chan
     , data-default-class
     , gitrev
     , lens
