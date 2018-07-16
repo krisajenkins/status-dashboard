@@ -2,11 +2,11 @@ module Main exposing (..)
 
 import Html
 import Json.Decode exposing (Decoder, decodeString, field, int)
+import Navigation exposing (Location)
 import RemoteData exposing (RemoteData(Loading, Success))
-import Types exposing (Model, Msg(WebsocketMsg, LocationChanged), decodeStatus)
+import Types exposing (Model, Msg(LocationChanged, WebsocketMsg), decodeStatus)
 import View exposing (root)
 import WebSocket exposing (keepAlive, listen)
-import Navigation exposing (Location)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -24,16 +24,32 @@ update msg model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     let
-        scheme = case model.location.protocol of
-                     "https:" -> "wss:"
-                     _ -> "ws:"
+        scheme =
+            case model.location.protocol of
+                "https:" ->
+                    "wss:"
+
+                _ ->
+                    "ws:"
+
+        uri =
+            case model.location.hostname of
+                "localhost" ->
+                    "/ws"
+
+                "127.0.0.1" ->
+                    "/ws"
+
+                _ ->
+                    "/healthcheck/ws"
+
         server =
-            scheme ++ "//" ++ model.location.host ++ "/ws"
+            scheme ++ "//" ++ model.location.host ++ uri
     in
-        Sub.batch
-            [ listen server (decodeString decodeStatus >> RemoteData.fromResult >> WebsocketMsg)
-            , keepAlive server
-            ]
+    Sub.batch
+        [ listen server (decodeString decodeStatus >> RemoteData.fromResult >> WebsocketMsg)
+        , keepAlive server
+        ]
 
 
 init : Location -> ( Model, Cmd Msg )
