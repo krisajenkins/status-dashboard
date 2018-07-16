@@ -1,6 +1,5 @@
 module Main exposing (..)
 
-import Html
 import Json.Decode exposing (Decoder, decodeString, field, int)
 import Navigation exposing (Location)
 import RemoteData exposing (RemoteData(Loading, Success))
