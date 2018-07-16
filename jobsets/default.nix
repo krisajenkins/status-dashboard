@@ -9,9 +9,9 @@ let pkgs = import nixpkgs {};
 
     dashboardPrs = builtins.fromJSON (builtins.readFile dashboardPrsJSON );
 
-    mkGitSrc = { repo, branch ? "refs/heads/master" }: {
+    mkGitSrc = { repo, branch ? "refs/heads/master", deepClone ? false }: {
       type = "git";
-      value = repo + " " + branch;
+      value = repo + " " + branch + (if deepClone then " deepClone" else "");
       emailresponsible = false;
     };
 
@@ -50,6 +50,7 @@ let pkgs = import nixpkgs {};
           dashboardSrc = mkGitSrc {
             repo = "https://github.com/krisajenkins/status-dashboard.git";
             branch = dashboardBranch;
+            deepClone = true;
           };
         };
       };
