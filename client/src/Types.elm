@@ -1,8 +1,8 @@
 module Types exposing (..)
 
 import Json.Decode exposing (Decoder, andThen, decodeString, field, string, succeed)
-import RemoteData exposing (RemoteData(Loading, Success))
 import Navigation exposing (Location)
+import RemoteData exposing (RemoteData(Loading, Success))
 
 
 type alias WebsocketData a =
